@@ -38,8 +38,6 @@ class App extends Component {
   timerStop(){
     clearInterval(this.state.intervalRef);
     this.state.intervalRef = null;
-    // var x =document.getElementsByClassName("clock"); //.style.animation = "0s infinite alternate ease-in-out tipsy";
-    // console.log();
   }
 
   timerReset(){
@@ -52,6 +50,7 @@ class App extends Component {
       this.timerStart();
     } else if (boardId == 2) {
       this.timerStop();
+
     } else if (boardId == 3) {
       this.timerReset();
     }
@@ -61,7 +60,7 @@ class App extends Component {
     return (
       <div>
         <div >
-          <Clock id="clock" key={'mykey-'+0} minutes={this.state.minutes} seconds={this.state.seconds} milisec={this.state.milisec}/>
+          <Clock className="clock" key={'mykey-'+0} minutes={this.state.minutes} seconds={this.state.seconds} milisec={this.state.milisec}/>
         </div>
         <div>
           <ClockBtn key={'mykey-'+1} btnName={'Start'} myId={1} innerClick= {this.onClick}/>
