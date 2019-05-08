@@ -1,2 +1,2 @@
-# REACT-BOILERPLATE
-A much simple boilerplate than create-react-app
+# STOPWATCH
+A simple stopwatch created using React.
