@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Clock from './ClockTimer';
-import ClockBtn from './ClockButtons';
-import './index.css';
+import Clock from './StopwatchText';
+import ClockBtn from './StopwatchButtons';
+import './../../index.css';
   
 export default class ClockMain extends Component {
     constructor(props)
@@ -14,7 +14,7 @@ export default class ClockMain extends Component {
 
 
   componentDidMount(){
-    var g = document.querySelector('.clock');
+    var g = document.querySelector('.stopwatch');
     console.log(window.getComputedStyle(g).animation);
   }
 
@@ -66,7 +66,7 @@ export default class ClockMain extends Component {
     return (
       <div>
         <div >
-          <Clock className="clock" key={'mykey-'+0} minutes={this.state.minutes} seconds={this.state.seconds} milisec={this.state.milisec}/>
+          <Clock className="stopwatch" key={'mykey-'+0} minutes={this.state.minutes} seconds={this.state.seconds} milisec={this.state.milisec}/>
         </div>
         <div>
           {['Start', 'Stop', 'Reset'].map((name, index) => <ClockBtn key={'mykey-'+index} btnName={name} myId={index} innerClick= {this.onClick}/>)}

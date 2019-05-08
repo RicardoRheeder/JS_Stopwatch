@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.css';
+import './../../index.css';
 
 export default class Clock extends Component {
     render() {
@@ -11,7 +11,7 @@ export default class Clock extends Component {
       milisec < 10 ? strMilisec = ('0'+milisec) : strMilisec = milisec;
 
       return (
-        <span className="clock">
+        <span className="stopwatch">
             <span>
               {strMinutes}
               :

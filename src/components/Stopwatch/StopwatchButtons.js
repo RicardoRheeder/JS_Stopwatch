@@ -6,7 +6,7 @@ export default class ClockButton extends React.Component {
       
       let { myId, btnName, innerClick = null } = this.props;
       return (
-        <span className="clockButton"  onClick = {()=>{ innerClick(myId) }}>
+        <span className="stopwatchButton"  onClick = {()=>{ innerClick(myId) }}>
             <button className="button" onClick={()=>{console.log("Button created")}}>{btnName}</button>
         </span>
       );
