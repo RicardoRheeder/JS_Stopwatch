@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Clock from './clock';
-import ClockBtn from './clockButtons';
+import Clock from './Clock';
+import ClockBtn from './ClockButtons';
 import './index.css';
   
 class App extends Component {
   constructor(props)
   {
     super(props);
-    this.state = {milisec:0, seconds:0, minutes:0, intervalRef:null};
+    this.state = {milisec:0, seconds:0, minutes:0, intervalRef:null, isRotating:false};
     this.onClick = this.onClick.bind(this);
     this.timerIncrement = this.timerIncrement.bind(this);
+  }
+
+
+  componentDidMount(){
+    var g = document.querySelector('.clock');
+    console.log(window.getComputedStyle(g).animation);
   }
 
   timerStart() {
     var intervalRef = setInterval(this.timerIncrement, 10);
     // store intervalRef in the state so it can be accessed later:
-    this.setState({intervalRef: intervalRef});
+    this.setState({intervalRef, isRotating:true});
     // console.log(intervalRef);
   }
 
-  //TODO: DOUBLE CHECK
   timerIncrement() {
     // Logic to deal with converting seconds to minutes, etc
     if ((this.state.milisec + 1) >= 100){
@@ -30,14 +35,17 @@ class App extends Component {
       // increment minute, reset seconds
       this.setState({ minutes: this.state.minutes + 1, seconds: 0 });
     } else {
-      // increment seconds
+      // increment milisec
       this.setState({ milisec: this.state.milisec + 1 });
     }
   } 
 
   timerStop(){
     clearInterval(this.state.intervalRef);
+    this.setState({intervalRef:null, isRotating:false})
     this.state.intervalRef = null;
+    // debugger;
+    
   }
 
   timerReset(){
@@ -46,12 +54,11 @@ class App extends Component {
   }
 
   onClick(boardId){
-    if (boardId == 1 && this.state.intervalRef == null){
+    if (boardId == 0 && this.state.intervalRef == null){
       this.timerStart();
-    } else if (boardId == 2) {
+    } else if (boardId == 1) {
       this.timerStop();
-
-    } else if (boardId == 3) {
+    } else if (boardId == 2) {
       this.timerReset();
     }
   }
@@ -63,9 +70,7 @@ class App extends Component {
           <Clock className="clock" key={'mykey-'+0} minutes={this.state.minutes} seconds={this.state.seconds} milisec={this.state.milisec}/>
         </div>
         <div>
-          <ClockBtn key={'mykey-'+1} btnName={'Start'} myId={1} innerClick= {this.onClick}/>
-          <ClockBtn key={'mykey-'+2} btnName={'Stop'} myId={2} innerClick= {this.onClick}/>
-          <ClockBtn key={'mykey-'+3} btnName={'Reset'} myId={3} innerClick= {this.onClick}/>
+          {['Start', 'Stop', 'Reset'].map((name, index) => <ClockBtn key={'mykey-'+index} btnName={name} myId={index} innerClick= {this.onClick}/>)}
         </div>
       </div>
     );
