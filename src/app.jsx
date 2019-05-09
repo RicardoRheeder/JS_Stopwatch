@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './components/layout/Header';
-import ClockMain from './components/stopwatch/StopwatchMain';
+import StopwatchMain from './components/stopwatch/StopwatchMain';
+import CountdownMain from './components/countdown/CountdownMain';
+
+import Home from './components/pages/Home';
 import About from './components/pages/About';
+import NotFound from './components/pages/NotFound';
+
   
 class App extends Component {
   constructor(props)
@@ -16,10 +21,15 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="container">
-            <Header />
-            <Route exact path="/clock" component={ClockMain} />
-            <Route exact path="/about" component={About} />
+          <div className="container" >
+          <Route path="/" component={Header}/>
+            <Switch> 
+              <Route path="/home" component={Home} />
+              <Route path="/stopwatch" component={StopwatchMain} />
+              <Route path="/countdown" component={CountdownMain} />
+              <Route path="/about" component={About} />
+              <Route path="*" component={NotFound} />
+            </Switch>
           </div>  
         </div>
       </Router>

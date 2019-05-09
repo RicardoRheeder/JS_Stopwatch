@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Clock from './StopwatchText';
-import ClockBtn from './StopwatchButtons';
+import Clock from '../TimerText';
+import ClockBtn from '../TimerControlButtons.js';
 import './../../index.css';
   
 export default class ClockMain extends Component {
@@ -64,11 +64,11 @@ export default class ClockMain extends Component {
 
   render() {
     return (
-      <div>
+      <div className="clockComponent">
         <div >
-          <Clock className="stopwatch" key={'mykey-'+0} minutes={this.state.minutes} seconds={this.state.seconds} milisec={this.state.milisec}/>
+          <Clock key={'mykey-'+0} minutes={this.state.minutes} seconds={this.state.seconds} milisec={this.state.milisec}/>
         </div>
-        <div>
+        <div className="clockButtonsPanel">
           {['Start', 'Stop', 'Reset'].map((name, index) => <ClockBtn key={'mykey-'+index} btnName={name} myId={index} innerClick= {this.onClick}/>)}
         </div>
       </div>
