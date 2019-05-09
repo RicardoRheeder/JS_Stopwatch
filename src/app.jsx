@@ -23,15 +23,16 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="container" >
-          <Route path="/" component={Header}/>
-            <Switch> 
-              <Route path="/home" component={Home} />
-              <Route path="/stopwatch" component={Stopwatch} />
-              <Route path="/countdown" component={Countdown} />
-              <Route path="/clock" component={Clock} />
-              <Route path="/about" component={About} />
-              <Route path="*" component={NotFound} />
-            </Switch>
+            <Header/>
+              <Route path="/"/>
+              <Switch> 
+                <Route path="/home" component={Home} />
+                <Route path="/stopwatch" component={Stopwatch} />
+                <Route path="/countdown" component={Countdown} />
+                <Route path="/clock" component={Clock} />
+                <Route path="/about" component={About} />
+                <Route path="*" component={NotFound} />
+              </Switch>
           </div>  
         </div>
       </Router>

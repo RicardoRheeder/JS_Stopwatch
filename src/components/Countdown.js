@@ -11,10 +11,17 @@ export default class CountdownMain extends Component {
     this.timerIncrement = this.timerIncrement.bind(this);
   }
 
+  componentWillUnmount(){
+    if (this.state.intervalRef != null) 
+    { 
+        clearInterval(this.state.intervalRef);
+        this.setState({ intervalRef: null });
+    }
+  }
+
   timerStart() {
-    var intervalRef = setInterval(this.timerIncrement, 10);
     // store intervalRef in the state so it can be accessed later:
-    this.setState({intervalRef});
+    this.setState({ intervalRef: setInterval(() => this.timerIncrement(), 10) })
     // console.log(intervalRef);
   }
 

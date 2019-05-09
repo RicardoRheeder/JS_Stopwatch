@@ -16,10 +16,17 @@ export default class ClockMain extends Component {
     console.log(window.getComputedStyle(g).animation);
   }
 
+  componentWillUnmount(){
+    if (this.state.intervalRef != null) 
+    { 
+        clearInterval(this.state.intervalRef);
+        this.setState({ intervalRef: null });
+    }
+  }
+
   timerStart() {
-    var intervalRef = setInterval(this.timerIncrement, 10);
     // store intervalRef in the state so it can be accessed later:
-    this.setState({intervalRef});
+    this.setState({ intervalRef: setInterval(() => this.timerIncrement(), 10) })
     // console.log(intervalRef);
   }
 

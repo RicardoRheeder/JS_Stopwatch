@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import CountdownText from './TimerText';
 import '../index.css';
-  
 
 export default class Clock extends Component {
     constructor(props){
         super(props);
-        this.state = {milisec:0, seconds:0, minutes:0, curTime:new Date()};
+        this.state = {milisec:0, seconds:0, minutes:0, curTime:new Date(), intervalRef:null};
         this.updateClock= this.updateClock.bind(this);
-        this.startClock();
         this.curTime = new Date();
     }
 
-  startClock(){
-      console.log("Here 1");
-    setInterval(this.updateClock, 10);
+  componentDidMount() {
+    this.setState({ intervalRef: setInterval(() => this.updateClock(), 10) })
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalRef);
+    this.setState({ intervalRef: null })
   }
 
   updateClock(){
