@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import './../../index.css';
+import '../index.css';
 
 export default class CountdownButton extends Component {
    
     render() {
-      
       let { myId, btnName, innerClick = null } = this.props;
       return (
         <span onClick = {()=>{ innerClick(myId) }}>

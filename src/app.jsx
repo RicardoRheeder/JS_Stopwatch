@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './components/layout/Header';
-import StopwatchMain from './components/stopwatch/StopwatchMain';
-import CountdownMain from './components/countdown/CountdownMain';
+import Stopwatch from './components/Stopwatch';
+import Countdown from './components/Countdown';
+import Clock from './components/Clock';
 
 import Home from './components/pages/Home';
 import About from './components/pages/About';
@@ -25,8 +26,9 @@ class App extends Component {
           <Route path="/" component={Header}/>
             <Switch> 
               <Route path="/home" component={Home} />
-              <Route path="/stopwatch" component={StopwatchMain} />
-              <Route path="/countdown" component={CountdownMain} />
+              <Route path="/stopwatch" component={Stopwatch} />
+              <Route path="/countdown" component={Countdown} />
+              <Route path="/clock" component={Clock} />
               <Route path="/about" component={About} />
               <Route path="*" component={NotFound} />
             </Switch>

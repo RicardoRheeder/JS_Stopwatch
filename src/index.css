@@ -4,7 +4,7 @@
   }
 
   .container{
-    border: solid red;
+    /* border: solid red; */
     width: 100vw;
     height: 100vh;
     align-content: center;
@@ -17,13 +17,13 @@
     color: #fff;
     text-align: center;
     position: relative;
-    border: solid blue;
+    /* border: solid blue; */
     padding: 5% 0 0 0;
   }
 
   .clockComponent{
     position: relative;
-    border: solid yellow;
+    /* border: solid yellow; */
     width: 100vw;
     height: max-content;
     text-align: center;
@@ -67,7 +67,7 @@
   
   .clockButtonsPanel{
     position: relative;
-    border: solid blue;
+    /* border: solid blue; */
     padding: 10% 0 0 0;
   }
 

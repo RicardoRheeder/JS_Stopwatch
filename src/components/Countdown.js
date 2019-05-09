@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
-import CountdownText from '../TimerText';
-import CountdownButtons from '../TimerControlButtons.js';
-import './../../index.css';
+import CountdownText from './TimerText';
+import CountdownButtons from './TimerControlButtons.js';
+import '../index.css';
   
 export default class CountdownMain extends Component {
-    constructor(props)
-  {
+  constructor(props){
     super(props);
-    this.state = {milisec:0, seconds:5, minutes:0, intervalRef:null, isRotating:false};
+    this.state = {milisec:0, seconds:30, minutes:0, intervalRef:null};
     this.onClick = this.onClick.bind(this);
     this.timerIncrement = this.timerIncrement.bind(this);
-  }
-
-
-  componentDidMount(){
-    // var g = document.querySelector('.stopwatch');
-    // console.log(window.getComputedStyle(g).animation);
   }
 
   timerStart() {
     var intervalRef = setInterval(this.timerIncrement, 10);
     // store intervalRef in the state so it can be accessed later:
-    this.setState({intervalRef, isRotating:true});
+    this.setState({intervalRef});
     // console.log(intervalRef);
   }
 
@@ -45,10 +38,8 @@ export default class CountdownMain extends Component {
 
   timerStop(){
     clearInterval(this.state.intervalRef);
-    this.setState({intervalRef:null, isRotating:false})
+    this.setState({intervalRef:null})
     this.state.intervalRef = null;
-    // debugger;
-    
   }
 
   timerReset(){
@@ -81,6 +72,7 @@ export default class CountdownMain extends Component {
   }
 }
 
+//TODO: Try implement input field for countdown timer
 
  /* <form className="countdownSubmit" onSubmit={this.onSubmit} style={{display: 'flex'}}>
                 <input 
