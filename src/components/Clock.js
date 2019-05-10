@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import CountdownText from './TimerText';
 import '../index.css';
 
+/**
+ * Serves as a component to display the current local time
+ */
 export default class Clock extends Component {
     constructor(props){
         super(props);
@@ -10,15 +13,19 @@ export default class Clock extends Component {
         this.curTime = new Date();
     }
 
+    // Starts the interval and assigns it to a reference to be able to clear it
   componentDidMount() {
     this.setState({ intervalRef: setInterval(() => this.updateClock(), 10) })
   }
 
+  // Stops the interval and clears the reference - used to stop memory leaks
   componentWillUnmount() {
     clearInterval(this.state.intervalRef);
     this.setState({ intervalRef: null })
   }
 
+  // Serves as the update method for the local time. 
+  // Sets the seconds, minutes, etc
   updateClock(){
     this.setState({milisec: this.state.curTime.getMilliseconds(), seconds: this.state.curTime.getSeconds(), minutes: this.state.curTime.getMinutes()});
     this.setState({curTime: new Date()})

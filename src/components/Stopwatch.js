@@ -3,6 +3,9 @@ import Clock from './TimerText';
 import ClockBtn from './TimerControlButtons.js';
 import '../index.css';
   
+/**
+ * Serves as a component to display a stopwatch mechanic
+ */
 export default class ClockMain extends Component {
   constructor(props){
     super(props);
@@ -11,11 +14,7 @@ export default class ClockMain extends Component {
     this.timerIncrement = this.timerIncrement.bind(this);
   }
 
-  componentDidMount(){
-    var g = document.querySelector('.stopwatch');
-    console.log(window.getComputedStyle(g).animation);
-  }
-
+      // Stops the interval and clears the reference - used to stop memory leaks
   componentWillUnmount(){
     if (this.state.intervalRef != null) 
     { 
@@ -24,12 +23,13 @@ export default class ClockMain extends Component {
     }
   }
 
+  // Will initiate the interval function
   timerStart() {
-    // store intervalRef in the state so it can be accessed later:
+    // Store intervalRef in the state so it can be accessed later:
     this.setState({ intervalRef: setInterval(() => this.timerIncrement(), 10) })
-    // console.log(intervalRef);
   }
 
+    // Deals with the logic on how to Increment each variable
   timerIncrement() {
     // Logic to deal with converting seconds to minutes, etc
     if ((this.state.milisec + 1) >= 100){
@@ -44,25 +44,26 @@ export default class ClockMain extends Component {
     }
   } 
 
+    // Stops the timer
   timerStop(){
     clearInterval(this.state.intervalRef);
     this.setState({intervalRef:null})
-    this.state.intervalRef = null;
-    // debugger;
-    
+    this.state.intervalRef = null;    
   }
 
+    // Resets the timer
   timerReset(){
     this.setState({seconds: 0, minutes: 0, milisec:0});
     this.timerStop();
   }
 
-  onClick(boardId){
-    if (boardId == 0 && this.state.intervalRef == null){
+    // Handles the button's onClick methods depending on the id of the button
+  onClick(buttonId){
+    if (buttonId == 0 && this.state.intervalRef == null){
       this.timerStart();
-    } else if (boardId == 1) {
+    } else if (buttonId == 1) {
       this.timerStop();
-    } else if (boardId == 2) {
+    } else if (buttonId == 2) {
       this.timerReset();
     }
   }
@@ -74,6 +75,7 @@ export default class ClockMain extends Component {
           <Clock key={'mykey-'+0} minutes={this.state.minutes} seconds={this.state.seconds} milisec={this.state.milisec}/>
         </div>
         <div className="clockButtonsPanel">
+                   {/**Maps each button the the corresponding key - essentially creates a button for each key */}
           {['Start', 'Stop', 'Reset'].map((name, index) => <ClockBtn key={'mykey-'+index} btnName={name} myId={index} innerClick= {this.onClick}/>)}
         </div>
       </div>

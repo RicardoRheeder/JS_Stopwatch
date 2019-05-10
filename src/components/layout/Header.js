@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
+/**
+ * Serves as the Navigational tabs located near the top of the application
+ * Allows the user to navigate to any of the desired links
+ */
 export default function Header() {
   return (
     <header className="headerStyle">

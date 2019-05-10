@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import '../index.css';
 
+/**
+ * Serves to display the text of the time
+ */
 export default class CountdownText extends Component {
     render() {
       let {minutes = 0, seconds = 0, milisec = 0, strMinutes='', strSeconds='', strMilisec='' } = this.props;

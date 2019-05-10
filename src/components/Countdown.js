@@ -3,14 +3,19 @@ import CountdownText from './TimerText';
 import CountdownButtons from './TimerControlButtons.js';
 import '../index.css';
   
+/**
+ * Serves as a component to display a countdown timer
+ */
 export default class CountdownMain extends Component {
   constructor(props){
     super(props);
+    // For now, this is the only way to set the timer to a desired amount
     this.state = {milisec:0, seconds:30, minutes:0, intervalRef:null};
     this.onClick = this.onClick.bind(this);
-    this.timerIncrement = this.timerIncrement.bind(this);
+    this.timerDecrement = this.timerDecrement.bind(this);
   }
 
+    // Stops the interval and clears the reference - used to stop memory leaks
   componentWillUnmount(){
     if (this.state.intervalRef != null) 
     { 
@@ -19,13 +24,14 @@ export default class CountdownMain extends Component {
     }
   }
 
+  // Will initiate the interval function
   timerStart() {
-    // store intervalRef in the state so it can be accessed later:
-    this.setState({ intervalRef: setInterval(() => this.timerIncrement(), 10) })
-    // console.log(intervalRef);
+    // Store intervalRef in the state so it can be accessed later:
+    this.setState({ intervalRef: setInterval(() => this.timerDecrement(), 10) })
   }
 
-  timerIncrement() {
+  // Deals with the logic on how to Decrement each variable
+  timerDecrement() {
     if ((this.state.milisec <= 0) && (this.state.seconds <= 0) && (this.state.minutes <= 0)){
         this.timerStop();
     }else{
@@ -43,23 +49,26 @@ export default class CountdownMain extends Component {
     }
   } 
 
+  // Stops the timer
   timerStop(){
     clearInterval(this.state.intervalRef);
     this.setState({intervalRef:null})
     this.state.intervalRef = null;
   }
 
+  // Resets the timer
   timerReset(){
     this.setState({seconds: 0, minutes: 10, milisec:0});
     this.timerStop();
   }
 
-  onClick(boardId){
-    if (boardId == 0 && this.state.intervalRef == null){
+  // Handles the button's onClick methods depending on the id of the button
+  onClick(buttonId){
+    if (buttonId == 0 && this.state.intervalRef == null){
       this.timerStart();
-    } else if (boardId == 1) {
+    } else if (buttonId == 1) {
       this.timerStop();
-    } else if (boardId == 2) {
+    } else if (buttonId == 2) {
       this.timerReset();
     }
   }
@@ -71,7 +80,7 @@ export default class CountdownMain extends Component {
           <CountdownText  key={'mykey-'+0} minutes={this.state.minutes} seconds={this.state.seconds} milisec={this.state.milisec}/>
         </div>
         <div className="clockButtonsPanel">
-           
+           {/**Maps each button the the corresponding key - essentially creates a button for each key */}
             {['Start', 'Stop', 'Reset'].map((name, index) => <CountdownButtons key={'mykey-'+index} btnName={name} myId={index} innerClick= {this.onClick}/>)}
         </div>
       </div>

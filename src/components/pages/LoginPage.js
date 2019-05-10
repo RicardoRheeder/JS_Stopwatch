@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 
+/**
+ * This page displays the fields for user input to log in and sets authentication
+ */
 export default class LoginPage extends Component {
-
+  // RedirectToReferrer is used to determine whether or not to redirect the user to the previous page
   state = { redirectToReferrer: false };
 
   componentDidMount(){
@@ -13,11 +16,11 @@ export default class LoginPage extends Component {
   }
 
   render() {
+    // Sets from to either condition
     let { from } = this.props.location.state || { from: { pathname: "/" } };
 
     return (
       <div>
-
         <h1>
           Log in screen
         </h1>
@@ -31,11 +34,10 @@ export default class LoginPage extends Component {
         </div>
         <div>
           <button onClick={()=>{
-                this.props.history.push("/");
-                this.props.setAuthentication(true);
+                this.props.history.push(from);  // Sends the user back to the previous page
+                this.props.setAuthentication(true); // Registers that the user is now logged in
           }}>Log in</button>
         </div>
-
       </div>
     );
   }
