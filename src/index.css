@@ -11,6 +11,35 @@
     text-align: center;
   }
 
+  p{
+    color: gray;
+  }
+
+  .login{
+    text-align: right;
+    padding: 0 5% 0 0;
+  }
+
+  li {
+    color: gray;
+
+  }
+
+  h1{
+    color: #fff;
+  }
+
+  label {
+    color: #fff;
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+  }
+
+  input,
+  label {
+      margin: .4rem 0;
+  }
+
   .headerStyle{
     width: 100vw;
     height: max-content;

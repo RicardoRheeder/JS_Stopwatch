@@ -7,7 +7,7 @@ export default function Header() {
       <h1>
         Stopwatch
       </h1>
-      <Link style={linkStyle} to="/home">Home </Link> 
+      <Link style={linkStyle} to="/">Home </Link> 
       | 
       <Link style={linkStyle} to="/stopwatch"> Stopwatch </Link>
       | 
@@ -16,6 +16,8 @@ export default function Header() {
       <Link style={linkStyle} to="/countdown"> Countdown </Link>
       | 
       <Link style={linkStyle} to="/about"> About</Link>
+      <p>&nbsp;</p>
+      <hr/>
     </header>
   )
 }

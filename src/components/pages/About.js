@@ -7,9 +7,9 @@ export default function About() {
       <h1>
           Todo
       </h1>
-      <p>
-          Remember to try store the timers in states!
-      </p>
+      <ul>
+        <li>Try keep timer's times.</li>
+      </ul>
     </React.Fragment>
   )
 }
